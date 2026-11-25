@@ -1,0 +1,135 @@
+/* App.css – estilos de GOTYStore */
+
+:root {
+  --fondo: #0e1120;
+  --tarjeta: #171b30;
+  --borde: #2b3150;
+  --texto: #e8eaf6;
+  --texto-suave: #9aa1c4;
+  --dorado: #f5c542;
+  --dorado-oscuro: #d9a91c;
+  --verde: #3ecf8e;
+  --ambar: #f5a524;
+  --rojo: #ef5350;
+  --azul: #6c8cff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #1a1f3d 0%, var(--fondo) 55%);
+  color: var(--texto);
+  font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  min-height: 100vh;
+}
+
+.app { max-width: 1200px; margin: 0 auto; padding: 24px 20px 40px; }
+
+/* ---------- Encabezado ---------- */
+.encabezado {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 16px; flex-wrap: wrap; margin-bottom: 16px;
+}
+.encabezado h1 { margin: 0; font-size: 2rem; color: var(--dorado); letter-spacing: 0.5px; }
+.encabezado p { margin: 4px 0 0; color: var(--texto-suave); }
+
+.estado-api {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  background: var(--tarjeta); border: 1px solid var(--borde);
+  padding: 8px 14px; border-radius: 999px; font-size: 0.9rem;
+}
+.estado-api small { color: var(--texto-suave); }
+.punto { width: 10px; height: 10px; border-radius: 50%; background: var(--ambar); }
+.estado-conectado .punto { background: var(--verde); }
+.estado-desconectado .punto { background: var(--rojo); }
+
+/* ---------- Mensajes ---------- */
+.zona-mensaje { position: sticky; top: 0; z-index: 10; min-height: 8px; }
+.mensaje {
+  border-radius: 10px; padding: 12px 16px; margin-bottom: 16px;
+  border: 1px solid; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+.mensaje strong { font-size: 1.05rem; }
+.mensaje p { margin: 4px 0 0; }
+.mensaje ul { margin: 8px 0 0; padding-left: 20px; }
+.mensaje-exito { background: #12352a; border-color: var(--verde); color: #b8f3d9; }
+.mensaje-advertencia { background: #3a2c0c; border-color: var(--ambar); color: #ffe0a3; }
+.mensaje-error { background: #3b1717; border-color: var(--rojo); color: #ffc9c7; }
+code { font-family: Consolas, "Courier New", monospace; }
+
+/* ---------- Tarjetas y formularios ---------- */
+.rejilla { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px; }
+.tarjeta {
+  background: var(--tarjeta); border: 1px solid var(--borde);
+  border-radius: 14px; padding: 18px; margin-bottom: 16px;
+}
+.rejilla > .tarjeta, .rejilla > div > .tarjeta { margin-bottom: 0; height: 100%; }
+.tarjeta h2 { margin: 0 0 12px; font-size: 1.1rem; }
+.tarjeta h3 { margin: 14px 0 6px; font-size: 1rem; color: var(--dorado); }
+.tarjeta-encabezado { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+.tarjeta-encabezado h2 { margin: 0; }
+
+label { display: block; margin: 10px 0 4px; font-size: 0.85rem; color: var(--texto-suave); }
+input[type="text"] {
+  width: 100%; padding: 10px 12px; border-radius: 8px;
+  border: 1px solid var(--borde); background: #0f1326; color: var(--texto); font-size: 0.95rem;
+}
+input[type="text"]:focus { outline: 2px solid var(--azul); border-color: var(--azul); }
+.dos-columnas { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+label.check { display: flex; align-items: center; gap: 8px; color: var(--texto); margin: 14px 0; cursor: pointer; }
+label.check input { width: 18px; height: 18px; accent-color: var(--dorado); }
+
+/* ---------- Botones ---------- */
+.btn {
+  border: 1px solid transparent; border-radius: 8px; padding: 10px 16px;
+  font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: filter 0.15s, transform 0.05s;
+}
+.btn:hover:not(:disabled) { filter: brightness(1.12); }
+.btn:active:not(:disabled) { transform: translateY(1px); }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.btn-primario { background: var(--dorado); color: #1b1500; width: 100%; }
+.btn-secundario { background: transparent; border-color: var(--azul); color: var(--azul); }
+.btn-peligro { background: transparent; border-color: var(--rojo); color: var(--rojo); }
+.btn-mini { padding: 6px 10px; font-size: 0.8rem; background: transparent; border-color: var(--azul); color: var(--azul); }
+.btn-mini.btn-peligro { border-color: var(--rojo); color: var(--rojo); }
+.fila-botones { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+.fila-botones .btn { flex: 1; }
+
+/* ---------- Resultado por ID ---------- */
+.resultado-id { margin-top: 14px; border-top: 1px dashed var(--borde); padding-top: 4px; }
+dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 0; }
+dt { color: var(--texto-suave); }
+dd { margin: 0; font-weight: 600; }
+
+/* ---------- Tabla ---------- */
+.tabla-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; min-width: 640px; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--borde); }
+th { color: var(--texto-suave); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; }
+tbody tr:hover { background: rgba(108, 140, 255, 0.07); }
+.acciones { display: flex; gap: 8px; }
+.etiqueta { padding: 3px 10px; border-radius: 999px; font-size: 0.8rem; font-weight: 600; }
+.etiqueta-activa { background: #12352a; color: var(--verde); }
+.etiqueta-inactiva { background: #3b1717; color: var(--rojo); }
+.vacio { color: var(--texto-suave); margin: 0; }
+
+/* ---------- Respuesta del backend ---------- */
+.peticion { display: flex; align-items: center; gap: 10px; margin: 0 0 8px; flex-wrap: wrap; }
+.codigo { padding: 3px 10px; border-radius: 6px; font-weight: 700; font-size: 0.85rem; }
+.codigo-ok { background: #12352a; color: var(--verde); }
+.codigo-error { background: #3b1717; color: var(--rojo); }
+pre {
+  margin: 0; padding: 14px; background: #0a0d1c; border: 1px solid var(--borde);
+  border-radius: 8px; overflow-x: auto; font-size: 0.85rem; color: #c8f7dc;
+  font-family: Consolas, "Courier New", monospace;
+}
+
+footer { text-align: center; color: var(--texto-suave); font-size: 0.85rem; margin-top: 24px; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1000px) { .rejilla { grid-template-columns: 1fr; } }
+@media (max-width: 520px) {
+  .dos-columnas { grid-template-columns: 1fr; }
+  .encabezado h1 { font-size: 1.6rem; }
+}
